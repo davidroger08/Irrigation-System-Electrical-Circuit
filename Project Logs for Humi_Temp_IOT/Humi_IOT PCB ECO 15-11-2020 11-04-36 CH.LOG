@@ -1,0 +1,128 @@
+Removed Pin From Net: NetName=NetIC1_1 Pin=IC1-1
+Removed Pin From Net: NetName=VCC Pin=IC1-2
+Removed Pin From Net: NetName=VCC Pin=IC1-2
+Removed Pin From Net: NetName=12V Pin=IC1-3
+Removed Pin From Net: NetName=NetLED1_1 Pin=R2-1
+Removed Pin From Net: NetName=VCC Pin=R2-2
+Removed Pin From Net: NetName=VCC Pin=R3-1
+Removed Pin From Net: NetName=NetIC1_1 Pin=R3-2
+Removed Pin From Net: NetName=NetIC1_1 Pin=R5-1
+Removed Pin From Net: NetName=GND Pin=R5-2
+Removed Member From Class: ClassName=Humi_IOT Member=IC1
+Removed Member From Class: ClassName=Humi_IOT Member=R8
+Removed Member From Class: ClassName=Humi_IOT Member=R10
+Removed Member From Class: ClassName=Humi_IOT Member=R12
+Change Component Footprint: Designator=F1 Old Footprint=FUSE2 - duplicate New Footprint=Fuse
+Change Component Designator: OldDesignator=C1 NewDesignator=C3
+Change Component Designator: OldDesignator=C2 NewDesignator=C4
+Change Component Designator: OldDesignator=C3 NewDesignator=C5
+Change Component Designator: OldDesignator=C4 NewDesignator=C6
+Change Component Designator: OldDesignator=R7 NewDesignator=R2
+Change Component Designator: OldDesignator=R8 NewDesignator=R3
+Change Component Designator: OldDesignator=R9 NewDesignator=R4
+Change Component Designator: OldDesignator=R10 NewDesignator=R5
+Change Component Designator: OldDesignator=R11 NewDesignator=R6
+Change Component Designator: OldDesignator=R12 NewDesignator=R7
+Added Component: Designator=*1(DIO-3A)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "POLAR0.8"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=C1(C5mm)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "POLAR0.8"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "POLAR0.8"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=C2(C8mm)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "POLAR0.8"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "150 mH"; VariantName = "[No Variations]"
+Added Component: Designator=L1(L-DIP-M-6.0)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Value"; Value = "150 mH"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "R1/4W - 1K"; VariantName = "[No Variations]"
+Added Component: Designator=R1(RES-1/4W)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Value"; Value = "R1/4W - 1K"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Code_JEDEC"; Value = "TO-220-AB"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "LM2576 Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.national.com/ds/LM/LM2576.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2Description"; Value = "LM2576 Web Page"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "http://www.national.com/pf/LM/LM2576.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink3Description"; Value = "T05A Package Page"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink3URL"; Value = "http://www.national.com/packaging/folders/t05a.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "CompType"; Value = "Switcher"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "DatasheetVersion"; Value = "Aug-2004"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "DigiKeyPartNumber"; Value = "LM2576T-5.0-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FirstPublished"; Value = "4-Dec-2008"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "National Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "TO-220, Molded, 5 Lead, Straight"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "T05A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageTopMarking"; Value = "NSUZXYTT*LM2576T*-5.0 P+"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageVersion"; Value = "revJ, Jan-1992"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PartNumber"; Value = "LM2576T-5.0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PinCount"; Value = "5"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PowerWise"; Value = "N"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS"; Value = "O"; VariantName = "[No Variations]"
+Added Component: Designator=U1(LM2576t)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Code_JEDEC"; Value = "TO-220-AB"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "LM2576 Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.national.com/ds/LM/LM2576.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2Description"; Value = "LM2576 Web Page"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "http://www.national.com/pf/LM/LM2576.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink3Description"; Value = "T05A Package Page"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink3URL"; Value = "http://www.national.com/packaging/folders/t05a.html"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "CompType"; Value = "Switcher"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "DatasheetVersion"; Value = "Aug-2004"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "DigiKeyPartNumber"; Value = "LM2576T-5.0-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "FirstPublished"; Value = "4-Dec-2008"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "National Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "TO-220, Molded, 5 Lead, Straight"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "T05A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageTopMarking"; Value = "NSUZXYTT*LM2576T*-5.0 P+"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageVersion"; Value = "revJ, Jan-1992"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PartNumber"; Value = "LM2576T-5.0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PinCount"; Value = "5"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PowerWise"; Value = "N"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS"; Value = "O"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=*1-1
+Added Pin To Net: NetName=NetIC1_1 Pin=*1-2
+Added Pin To Net: NetName=12V Pin=C1-1
+Added Pin To Net: NetName=GND Pin=C1-2
+Added Pin To Net: NetName=VCC Pin=C2-1
+Added Pin To Net: NetName=GND Pin=C2-2
+Added Pin To Net: NetName=NetIC1_1 Pin=L1-1
+Added Pin To Net: NetName=VCC Pin=L1-2
+Added Pin To Net: NetName=NetLED1_1 Pin=R1-1
+Added Pin To Net: NetName=VCC Pin=R1-2
+Added Pin To Net: NetName=12V Pin=U1-1
+Added Pin To Net: NetName=NetIC1_1 Pin=U1-2
+Added Pin To Net: NetName=GND Pin=U1-3
+Added Pin To Net: NetName=VCC Pin=U1-4
+Added Pin To Net: NetName=GND Pin=U1-5
+Change Net Name : Old Net Name=NetC1_4 New Net Name=NetC3_4
+Change Net Name : Old Net Name=NetC4_1 New Net Name=NetC6_1
+Change Net Name : Old Net Name=NetC4_2 New Net Name=NetC6_2
+Change Net Name : Old Net Name=NetIC1_1 New Net Name=Net*1_2
+Added Member To Class: ClassName=Humi_IOT Member=Component *1 1N5822
+Added Member To Class: ClassName=Humi_IOT Member=Component C5 Header4
+Added Member To Class: ClassName=Humi_IOT Member=Component C6 JP2
+Added Member To Class: ClassName=Humi_IOT Member=Component L1 100uH
+Added Member To Class: ClassName=Humi_IOT Member=Component R1 1k
+Added Member To Class: ClassName=Humi_IOT Member=Component U1 LM2576T-5.0

@@ -1,0 +1,26 @@
+Removed Pin From Net: NetName=GND Pin=*1-1
+Removed Pin From Net: NetName=12V Pin=C1-1
+Removed Pin From Net: NetName=GND Pin=C1-2
+Removed Pin From Net: NetName=VCC Pin=C2-1
+Removed Pin From Net: NetName=GND Pin=C2-2
+Removed Pin From Net: NetName=VCC Pin=L1-2
+Removed Pin From Net: NetName=GND Pin=LED1-2
+Removed Pin From Net: NetName=VCC Pin=R1-2
+Removed Pin From Net: NetName=12V Pin=U1-1
+Removed Pin From Net: NetName=GND Pin=U1-3
+Removed Pin From Net: NetName=VCC Pin=U1-4
+Removed Pin From Net: NetName=GND Pin=U1-5
+Removed Member From Class: ClassName=Humi_IOT Member=*1
+Removed Member From Class: ClassName=Humi_IOT Member=C1
+Removed Member From Class: ClassName=Humi_IOT Member=C2
+Removed Member From Class: ClassName=Humi_IOT Member=LED1
+Removed Member From Class: ClassName=Humi_IOT Member=R1
+Removed Member From Class: ClassName=Humi_IOT Member=U1
+Change Component Footprint: Designator=L1 Old Footprint=L-DIP-M-7.8 New Footprint=BUCK_LM2596
+Change Component Comment : Designator=L1 Old Comment=100uH New Comment=BUCK_LM2596
+Change component parameters. Clean all parameters for all variants
+Added Pin To Net: NetName=12V Pin=L1-1
+Added Pin To Net: NetName=GND Pin=L1-2
+Added Pin To Net: NetName=GND Pin=L1-3
+Added Pin To Net: NetName=VCC Pin=L1-4
+Added Member To Class: ClassName=Humi_IOT Member=Component L1 BUCK_LM2596

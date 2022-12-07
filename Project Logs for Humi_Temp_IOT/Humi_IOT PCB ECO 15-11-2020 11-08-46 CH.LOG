@@ -1,0 +1,5 @@
+Change Component Footprint: Designator=R1 Old Footprint=RES-1/4W New Footprint=RES-SMD-0805
+Added Member To Class: ClassName=Humi_IOT Member=Component C1 100uF/16V
+Added Member To Class: ClassName=Humi_IOT Member=Component C2 1000uF/16V
+Added Member To Class: ClassName=Humi_IOT Member=Component R3 10k
+Added Member To Class: ClassName=Humi_IOT Member=Component R7 3k3

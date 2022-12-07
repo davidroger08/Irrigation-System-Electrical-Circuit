@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=SDA Pin=NodeMCU ESP1-20
+Removed Pin From Net: NetName=PWM Pin=NodeMCU ESP1-22
+Removed Pin From Net: NetName=VCC Pin=R1-1
+Removed Pin From Net: NetName=BT1 Pin=R1-2
+Removed Pin From Net: NetName=VCC Pin=R4-1
+Removed Pin From Net: NetName=BT2 Pin=R4-2
+Removed Pin From Net: NetName=VCC Pin=R6-1
+Removed Pin From Net: NetName=BT3 Pin=R6-2
+Removed Member From Class: ClassName=Humi_IOT Member=R1
+Removed Member From Class: ClassName=Humi_IOT Member=R4
+Removed Member From Class: ClassName=Humi_IOT Member=R6
+Added Pin To Net: NetName=PWM Pin=NodeMCU ESP1-20
+Added Pin To Net: NetName=SDA Pin=NodeMCU ESP1-22

@@ -1,0 +1,7 @@
+Added Component: Designator=L1(BUCK_LM2596)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=12V Pin=L1-1
+Added Pin To Net: NetName=GND Pin=L1-2
+Added Pin To Net: NetName=GND Pin=L1-3
+Added Pin To Net: NetName=VCC Pin=L1-4
+Added Member To Class: ClassName=Humi_IOT Member=Component L1 BUCK_LM2596

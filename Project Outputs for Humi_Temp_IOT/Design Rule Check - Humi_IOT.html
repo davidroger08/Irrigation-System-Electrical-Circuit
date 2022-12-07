@@ -1,0 +1,661 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD17\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">21/03/2021</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">12:21:56 CH</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc" class="file"><acronym title="F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc">F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">103</td></tr>
+</table>
+</td>
+</table><a name="IDENAAQTWZS0SJHPLQVJB5JPYORE"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWCVLFYVHLOKSD3LZGH52DUR4FD">Clearance Constraint (Gap=20mil) (All),(All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1Q5Y0AEAWNMEC42AETDUSCQO2N">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFRZZMDGJF4CKCADXZRIG2WWMKL">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID01SKTWQXS1Y1BXFSA1QH5SUA3O">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4CQBDVLZHXKOPSUZJLLC22PNPI">Width Constraint (Min=30mil) (Max=50mil) (Preferred=40mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEC4XWXB3EXBRG33RIJNB1QFN2K">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYB5XKSGSXLVJBELS5BSPDQOWDF">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">8</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJECJ31UPY5TEHZ2VGZUPPXRS5I">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1ZFL0FM51X0CDF1Z2RLIZGNHNB">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0TXS2ILUURJRHBC5ZCBERMBK0K">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">63</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYFMTO1VUYYLXFK1U0ECLSZSEUP">Silk to Silk (Clearance=10mil) (IsText),(All)</a></td>
+<td class="column2">5</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQ4DBEQKTCAMZJ004BGY5RGUAHM">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4B0EELJ5T5VDEVTKT3NCTISAYI">Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT'))</a></td>
+<td class="column2">21</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDUSQPWBPEU0WXLP2EMCYVDDQ1TD">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">103</td>
+</tr>
+</table><br><a name="IDWCVLFYVHLOKSD3LZGH52DUR4FD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=20mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10102.833mil|Location2.X=10135.037mil|Location1.Y=4008.581mil|Location2.Y=4022.915mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10102.833mil|Location2.X=10135.037mil|Location1.Y=4008.581mil|Location2.Y=4022.915mil|Absolute=True">Clearance Constraint: (Collision &lt; 20mil) Between Hole of Pad NodeMCU ESP1-3(10120mil,4015.748mil) on Multi-Layer And Track (10105mil,3915mil)(10105mil,4280mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10200.333mil|Location2.X=10232.537mil|Location1.Y=4008.581mil|Location2.Y=4022.915mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10200.333mil|Location2.X=10232.537mil|Location1.Y=4008.581mil|Location2.Y=4022.915mil|Absolute=True">Clearance Constraint: (Collision &lt; 20mil) Between Hole of Pad NodeMCU ESP1-4(10220mil,4015.748mil) on Multi-Layer And Track (10200mil,4005mil)(10200mil,4255mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10203.379mil|Location2.X=10235.582mil|Location1.Y=3999.127mil|Location2.Y=4013.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10203.379mil|Location2.X=10235.582mil|Location1.Y=3999.127mil|Location2.Y=4013.46mil|Absolute=True">Clearance Constraint: (Collision &lt; 20mil) Between Hole of Pad NodeMCU ESP1-4(10220mil,4015.748mil) on Multi-Layer And Track (10200mil,4005mil)(10305mil,3900mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10012.833mil|Location2.X=10045.037mil|Location1.Y=4008.581mil|Location2.Y=4022.915mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10012.833mil|Location2.X=10045.037mil|Location1.Y=4008.581mil|Location2.Y=4022.915mil|Absolute=True">Clearance Constraint: (Collision &lt; 20mil) Between Hole of Pad NodeMCU ESP1-2(10020mil,4015.748mil) on Multi-Layer And Track (10020mil,3940mil)(10020mil,4340mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDFRZZMDGJF4CKCADXZRIG2WWMKL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2030mil|Location2.X=10956.5mil|Location1.Y=4470mil|Location2.Y=4964.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2030mil|Location2.X=10956.5mil|Location1.Y=4470mil|Location2.Y=4964.748mil|Absolute=True">Un-Routed Net Constraint: Pad NodeMCU ESP1-20(10920mil,4915.748mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1485mil|Location2.X=10956.5mil|Location1.Y=2320mil|Location2.Y=4064.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1485mil|Location2.X=10956.5mil|Location1.Y=2320mil|Location2.Y=4064.748mil|Absolute=True">Un-Routed Net Constraint: Pad NodeMCU ESP1-11(10920mil,4015.748mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDYB5XKSGSXLVJBELS5BSPDQOWDF"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12676.54mil|Location2.X=12835.271mil|Location1.Y=6692.288mil|Location2.Y=6851.019mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12676.54mil|Location2.X=12835.271mil|Location1.Y=6692.288mil|Location2.Y=6851.019mil|Absolute=True">Hole Size Constraint: (157.48mil &gt; 100mil) Pad Free-9(12755.906mil,6771.654mil) on Multi-Layer Actual Hole Size = 157.48mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12676.54mil|Location2.X=12835.271mil|Location1.Y=5471.816mil|Location2.Y=5630.546mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12676.54mil|Location2.X=12835.271mil|Location1.Y=5471.816mil|Location2.Y=5630.546mil|Absolute=True">Hole Size Constraint: (157.48mil &gt; 100mil) Pad Free-7(12755.906mil,5551.181mil) on Multi-Layer Actual Hole Size = 157.48mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9723.784mil|Location2.X=9882.515mil|Location1.Y=5471.816mil|Location2.Y=5630.546mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9723.784mil|Location2.X=9882.515mil|Location1.Y=5471.816mil|Location2.Y=5630.546mil|Absolute=True">Hole Size Constraint: (157.48mil &gt; 100mil) Pad Free-6(9803.15mil,5551.181mil) on Multi-Layer Actual Hole Size = 157.48mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9723.784mil|Location2.X=9882.515mil|Location1.Y=6692.288mil|Location2.Y=6851.019mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9723.784mil|Location2.X=9882.515mil|Location1.Y=6692.288mil|Location2.Y=6851.019mil|Absolute=True">Hole Size Constraint: (157.48mil &gt; 100mil) Pad Free-5(9803.15mil,6771.654mil) on Multi-Layer Actual Hole Size = 157.48mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13055.32mil|Location2.X=13174.68mil|Location1.Y=3145.32mil|Location2.Y=3264.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13055.32mil|Location2.X=13174.68mil|Location1.Y=3145.32mil|Location2.Y=3264.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Pad Free-4(13115mil,3205mil) on Multi-Layer Actual Hole Size = 118.11mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13055.32mil|Location2.X=13174.68mil|Location1.Y=6765.32mil|Location2.Y=6884.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13055.32mil|Location2.X=13174.68mil|Location1.Y=6765.32mil|Location2.Y=6884.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Pad Free-3(13115mil,6825mil) on Multi-Layer Actual Hole Size = 118.11mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8170.32mil|Location2.X=8289.68mil|Location1.Y=6765.32mil|Location2.Y=6884.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8170.32mil|Location2.X=8289.68mil|Location1.Y=6765.32mil|Location2.Y=6884.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Pad Free-2(8230mil,6825mil) on Multi-Layer Actual Hole Size = 118.11mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8170.32mil|Location2.X=8289.68mil|Location1.Y=3145.32mil|Location2.Y=3264.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8170.32mil|Location2.X=8289.68mil|Location1.Y=3145.32mil|Location2.Y=3264.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Pad Free-1(8230mil,3205mil) on Multi-Layer Actual Hole Size = 118.11mil</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID0TXS2ILUURJRHBC5ZCBERMBK0K"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8485.167mil|Location2.X=8492.833mil|Location1.Y=6350.167mil|Location2.Y=6357.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8485.167mil|Location2.X=8492.833mil|Location1.Y=6350.167mil|Location2.Y=6357.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (8489mil,6304mil)(8489mil,6354mil) on Top Overlay And Pad C8-2(8530mil,6355mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8485.167mil|Location2.X=8492.833mil|Location1.Y=6350.167mil|Location2.Y=6357.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8485.167mil|Location2.X=8492.833mil|Location1.Y=6350.167mil|Location2.Y=6357.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (8459mil,6354mil)(8489mil,6354mil) on Top Overlay And Pad C8-2(8530mil,6355mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8487.167mil|Location2.X=8494.833mil|Location1.Y=6452.167mil|Location2.Y=6459.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8487.167mil|Location2.X=8494.833mil|Location1.Y=6452.167mil|Location2.Y=6459.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (8491mil,6456mil)(8491mil,6506mil) on Top Overlay And Pad C8-1(8530mil,6455mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8487.167mil|Location2.X=8494.833mil|Location1.Y=6452.167mil|Location2.Y=6459.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8487.167mil|Location2.X=8494.833mil|Location1.Y=6452.167mil|Location2.Y=6459.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (8461mil,6456mil)(8491mil,6456mil) on Top Overlay And Pad C8-1(8530mil,6455mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13167.167mil|Location2.X=13174.833mil|Location1.Y=3751.88mil|Location2.Y=3759.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13167.167mil|Location2.X=13174.833mil|Location1.Y=3751.88mil|Location2.Y=3759.547mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (13171mil,3755.713mil)(13171mil,3805.713mil) on Top Overlay And Pad C7-2(13130mil,3754.713mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13167.167mil|Location2.X=13174.833mil|Location1.Y=3751.88mil|Location2.Y=3759.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13167.167mil|Location2.X=13174.833mil|Location1.Y=3751.88mil|Location2.Y=3759.547mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (13171mil,3755.713mil)(13201mil,3755.713mil) on Top Overlay And Pad C7-2(13130mil,3754.713mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13165.167mil|Location2.X=13172.833mil|Location1.Y=3649.88mil|Location2.Y=3657.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13165.167mil|Location2.X=13172.833mil|Location1.Y=3649.88mil|Location2.Y=3657.547mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (13169mil,3603.713mil)(13169mil,3653.713mil) on Top Overlay And Pad C7-1(13130mil,3654.713mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13165.167mil|Location2.X=13172.833mil|Location1.Y=3649.88mil|Location2.Y=3657.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13165.167mil|Location2.X=13172.833mil|Location1.Y=3649.88mil|Location2.Y=3657.547mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (13169mil,3653.713mil)(13199mil,3653.713mil) on Top Overlay And Pad C7-1(13130mil,3654.713mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12250.263mil|Location2.X=12261.513mil|Location1.Y=3874.471mil|Location2.Y=3885.721mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12250.263mil|Location2.X=12261.513mil|Location1.Y=3874.471mil|Location2.Y=3885.721mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.548mil &lt; 10mil) Between Track (12160.388mil,3888.307mil)(12378.388mil,3888.307mil) on Top Overlay And Pad C3-4(12268.388mil,3843.307mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [8.548mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12217.763mil|Location2.X=12229.013mil|Location1.Y=3500.901mil|Location2.Y=3512.151mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12217.763mil|Location2.X=12229.013mil|Location1.Y=3500.901mil|Location2.Y=3512.151mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.563mil &lt; 10mil) Between Track (12160.388mil,3498.307mil)(12378.388mil,3498.307mil) on Top Overlay And Pad C3-1(12268.388mil,3543.307mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [8.563mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9196.875mil|Location2.X=9208.125mil|Location1.Y=6626.157mil|Location2.Y=6637.407mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9196.875mil|Location2.X=9208.125mil|Location1.Y=6626.157mil|Location2.Y=6637.407mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.563mil &lt; 10mil) Between Track (9140mil,6640mil)(9358mil,6640mil) on Top Overlay And Pad C5-1(9250mil,6595mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [8.563mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9229.375mil|Location2.X=9240.625mil|Location1.Y=6252.586mil|Location2.Y=6263.836mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9229.375mil|Location2.X=9240.625mil|Location1.Y=6252.586mil|Location2.Y=6263.836mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.548mil &lt; 10mil) Between Track (9140mil,6250mil)(9358mil,6250mil) on Top Overlay And Pad C5-4(9250mil,6295mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [8.548mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9493.375mil|Location2.X=9504.625mil|Location1.Y=5123.125mil|Location2.Y=5134.375mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9493.375mil|Location2.X=9504.625mil|Location1.Y=5123.125mil|Location2.Y=5134.375mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.5mil &lt; 10mil) Between Track (9499mil,5096mil)(9499mil,5124mil) on Top Overlay And Pad LED2-1(9490mil,5180mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [2.5mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11041.57mil|Location2.X=11052.82mil|Location1.Y=3501.846mil|Location2.Y=3513.096mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11041.57mil|Location2.X=11052.82mil|Location1.Y=3501.846mil|Location2.Y=3513.096mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.556mil &lt; 10mil) Between Track (10947mil,3510mil)(11042mil,3510mil) on Top Overlay And Pad SW3-4(11083mil,3489mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [5.556mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10886.847mil|Location2.X=10898.097mil|Location1.Y=3696.147mil|Location2.Y=3707.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10886.847mil|Location2.X=10898.097mil|Location1.Y=3696.147mil|Location2.Y=3707.397mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.577mil &lt; 10mil) Between Track (10892mil,3540mil)(10892mil,3695mil) on Top Overlay And Pad SW3-3(10895mil,3743mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.577mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11103.167mil|Location2.X=11110.833mil|Location1.Y=3730.167mil|Location2.Y=3737.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11103.167mil|Location2.X=11110.833mil|Location1.Y=3730.167mil|Location2.Y=3737.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (11106mil,3735mil)(11107mil,3734mil) on Top Overlay And Pad SW3-2(11087mil,3740mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11085.888mil|Location2.X=11097.138mil|Location1.Y=3694.737mil|Location2.Y=3705.987mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11085.888mil|Location2.X=11097.138mil|Location1.Y=3694.737mil|Location2.Y=3705.987mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.768mil &lt; 10mil) Between Track (11092mil,3541mil)(11092mil,3695mil) on Top Overlay And Pad SW3-2(11087mil,3740mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [4.768mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11041.737mil|Location2.X=11052.987mil|Location1.Y=3729.862mil|Location2.Y=3741.112mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11041.737mil|Location2.X=11052.987mil|Location1.Y=3729.862mil|Location2.Y=3741.112mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.768mil &lt; 10mil) Between Track (10947mil,3735mil)(11042mil,3735mil) on Top Overlay And Pad SW3-2(11087mil,3740mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [4.768mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10886.375mil|Location2.X=10897.625mil|Location1.Y=3529.133mil|Location2.Y=3540.383mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10886.375mil|Location2.X=10897.625mil|Location1.Y=3529.133mil|Location2.Y=3540.383mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.483mil &lt; 10mil) Between Track (10892mil,3540mil)(10892mil,3695mil) on Top Overlay And Pad SW3-1(10892mil,3495mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [4.483mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10423.07mil|Location2.X=10434.32mil|Location1.Y=3501.846mil|Location2.Y=3513.096mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10423.07mil|Location2.X=10434.32mil|Location1.Y=3501.846mil|Location2.Y=3513.096mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.556mil &lt; 10mil) Between Track (10328.5mil,3510mil)(10423.5mil,3510mil) on Top Overlay And Pad SW2-4(10464.5mil,3489mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [5.556mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10268.347mil|Location2.X=10279.597mil|Location1.Y=3696.147mil|Location2.Y=3707.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10268.347mil|Location2.X=10279.597mil|Location1.Y=3696.147mil|Location2.Y=3707.397mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.577mil &lt; 10mil) Between Track (10273.5mil,3540mil)(10273.5mil,3695mil) on Top Overlay And Pad SW2-3(10276.5mil,3743mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.577mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10484.667mil|Location2.X=10492.333mil|Location1.Y=3730.167mil|Location2.Y=3737.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10484.667mil|Location2.X=10492.333mil|Location1.Y=3730.167mil|Location2.Y=3737.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (10487.5mil,3735mil)(10488.5mil,3734mil) on Top Overlay And Pad SW2-2(10468.5mil,3740mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10467.388mil|Location2.X=10478.638mil|Location1.Y=3694.737mil|Location2.Y=3705.987mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10467.388mil|Location2.X=10478.638mil|Location1.Y=3694.737mil|Location2.Y=3705.987mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.768mil &lt; 10mil) Between Track (10473.5mil,3541mil)(10473.5mil,3695mil) on Top Overlay And Pad SW2-2(10468.5mil,3740mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [4.768mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10423.237mil|Location2.X=10434.487mil|Location1.Y=3729.862mil|Location2.Y=3741.112mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10423.237mil|Location2.X=10434.487mil|Location1.Y=3729.862mil|Location2.Y=3741.112mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.768mil &lt; 10mil) Between Track (10328.5mil,3735mil)(10423.5mil,3735mil) on Top Overlay And Pad SW2-2(10468.5mil,3740mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [4.768mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10267.875mil|Location2.X=10279.125mil|Location1.Y=3529.133mil|Location2.Y=3540.383mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10267.875mil|Location2.X=10279.125mil|Location1.Y=3529.133mil|Location2.Y=3540.383mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.483mil &lt; 10mil) Between Track (10273.5mil,3540mil)(10273.5mil,3695mil) on Top Overlay And Pad SW2-1(10273.5mil,3495mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [4.483mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9804.57mil|Location2.X=9815.82mil|Location1.Y=3501.846mil|Location2.Y=3513.096mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9804.57mil|Location2.X=9815.82mil|Location1.Y=3501.846mil|Location2.Y=3513.096mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.556mil &lt; 10mil) Between Track (9710mil,3510mil)(9805mil,3510mil) on Top Overlay And Pad SW1-4(9846mil,3489mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [5.556mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9649.847mil|Location2.X=9661.097mil|Location1.Y=3696.147mil|Location2.Y=3707.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9649.847mil|Location2.X=9661.097mil|Location1.Y=3696.147mil|Location2.Y=3707.397mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.577mil &lt; 10mil) Between Track (9655mil,3540mil)(9655mil,3695mil) on Top Overlay And Pad SW1-3(9658mil,3743mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [7.577mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9866.167mil|Location2.X=9873.833mil|Location1.Y=3730.167mil|Location2.Y=3737.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9866.167mil|Location2.X=9873.833mil|Location1.Y=3730.167mil|Location2.Y=3737.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (9869mil,3735mil)(9870mil,3734mil) on Top Overlay And Pad SW1-2(9850mil,3740mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9848.888mil|Location2.X=9860.138mil|Location1.Y=3694.737mil|Location2.Y=3705.987mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9848.888mil|Location2.X=9860.138mil|Location1.Y=3694.737mil|Location2.Y=3705.987mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.768mil &lt; 10mil) Between Track (9855mil,3541mil)(9855mil,3695mil) on Top Overlay And Pad SW1-2(9850mil,3740mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [4.768mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9804.737mil|Location2.X=9815.987mil|Location1.Y=3729.862mil|Location2.Y=3741.112mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9804.737mil|Location2.X=9815.987mil|Location1.Y=3729.862mil|Location2.Y=3741.112mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.768mil &lt; 10mil) Between Track (9710mil,3735mil)(9805mil,3735mil) on Top Overlay And Pad SW1-2(9850mil,3740mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [4.768mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9649.375mil|Location2.X=9660.625mil|Location1.Y=3529.133mil|Location2.Y=3540.383mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9649.375mil|Location2.X=9660.625mil|Location1.Y=3529.133mil|Location2.Y=3540.383mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.483mil &lt; 10mil) Between Track (9655mil,3540mil)(9655mil,3695mil) on Top Overlay And Pad SW1-1(9655mil,3495mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [4.483mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8791.167mil|Location2.X=8798.833mil|Location1.Y=3358.482mil|Location2.Y=3366.149mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8791.167mil|Location2.X=8798.833mil|Location1.Y=3358.482mil|Location2.Y=3366.149mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (8795mil,2955mil)(8795mil,3500mil) on Top Overlay And Pad JDC1-3(8815mil,3405mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8549.207mil|Location2.X=8556.873mil|Location1.Y=3496.167mil|Location2.Y=3503.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8549.207mil|Location2.X=8556.873mil|Location1.Y=3496.167mil|Location2.Y=3503.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (8465mil,3500mil)(8795mil,3500mil) on Top Overlay And Pad JDC1-1(8615mil,3505mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8101.916mil|Location2.X=8109.582mil|Location1.Y=4361.167mil|Location2.Y=4368.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8101.916mil|Location2.X=8109.582mil|Location1.Y=4361.167mil|Location2.Y=4368.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (7985mil,4365mil)(8235mil,4365mil) on Top Overlay And Pad F1-2(8110mil,4315mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8110.418mil|Location2.X=8118.084mil|Location1.Y=3411.167mil|Location2.Y=3418.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8110.418mil|Location2.X=8118.084mil|Location1.Y=3411.167mil|Location2.Y=3418.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (7985mil,3415mil)(8235mil,3415mil) on Top Overlay And Pad F1-1(8110mil,3465mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8101.916mil|Location2.X=8109.582mil|Location1.Y=3711.167mil|Location2.Y=3718.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8101.916mil|Location2.X=8109.582mil|Location1.Y=3711.167mil|Location2.Y=3718.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (7985mil,3715mil)(8235mil,3715mil) on Top Overlay And Pad F1-1(8110mil,3665mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8110.418mil|Location2.X=8118.084mil|Location1.Y=4061.167mil|Location2.Y=4068.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8110.418mil|Location2.X=8118.084mil|Location1.Y=4061.167mil|Location2.Y=4068.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (7985mil,4065mil)(8235mil,4065mil) on Top Overlay And Pad F1-2(8110mil,4115mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11879.69mil|Location2.X=11890.94mil|Location1.Y=3727.343mil|Location2.Y=3738.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11879.69mil|Location2.X=11890.94mil|Location1.Y=3727.343mil|Location2.Y=3738.593mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (11868mil,3727mil)(12022mil,3727mil) on Bottom Overlay And Pad R7-1(11905mil,3760mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11879.69mil|Location2.X=11890.94mil|Location1.Y=3781.407mil|Location2.Y=3792.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11879.69mil|Location2.X=11890.94mil|Location1.Y=3781.407mil|Location2.Y=3792.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (11868mil,3793mil)(12022mil,3793mil) on Bottom Overlay And Pad R7-1(11905mil,3760mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11959.69mil|Location2.X=11970.94mil|Location1.Y=3727.343mil|Location2.Y=3738.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11959.69mil|Location2.X=11970.94mil|Location1.Y=3727.343mil|Location2.Y=3738.593mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (11868mil,3727mil)(12022mil,3727mil) on Bottom Overlay And Pad R7-2(11985mil,3760mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11959.69mil|Location2.X=11970.94mil|Location1.Y=3781.407mil|Location2.Y=3792.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11959.69mil|Location2.X=11970.94mil|Location1.Y=3781.407mil|Location2.Y=3792.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (11868mil,3793mil)(12022mil,3793mil) on Bottom Overlay And Pad R7-2(11985mil,3760mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11994.415mil|Location2.X=12002.082mil|Location1.Y=3837.748mil|Location2.Y=3845.415mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11994.415mil|Location2.X=12002.082mil|Location1.Y=3837.748mil|Location2.Y=3845.415mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Text "R7" (12016mil,3827mil) on Bottom Overlay And Pad R6-1(11985mil,3860mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11959.69mil|Location2.X=11970.94mil|Location1.Y=3827.343mil|Location2.Y=3838.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11959.69mil|Location2.X=11970.94mil|Location1.Y=3827.343mil|Location2.Y=3838.593mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (11868mil,3827mil)(12022mil,3827mil) on Bottom Overlay And Pad R6-1(11985mil,3860mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11959.69mil|Location2.X=11970.94mil|Location1.Y=3881.407mil|Location2.Y=3892.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11959.69mil|Location2.X=11970.94mil|Location1.Y=3881.407mil|Location2.Y=3892.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (11868mil,3893mil)(12022mil,3893mil) on Bottom Overlay And Pad R6-1(11985mil,3860mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11908.372mil|Location2.X=11916.039mil|Location1.Y=3869.324mil|Location2.Y=3876.99mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11908.372mil|Location2.X=11916.039mil|Location1.Y=3869.324mil|Location2.Y=3876.99mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Text "R7" (12016mil,3827mil) on Bottom Overlay And Pad R6-2(11905mil,3860mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11879.69mil|Location2.X=11890.94mil|Location1.Y=3827.343mil|Location2.Y=3838.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11879.69mil|Location2.X=11890.94mil|Location1.Y=3827.343mil|Location2.Y=3838.593mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (11868mil,3827mil)(12022mil,3827mil) on Bottom Overlay And Pad R6-2(11905mil,3860mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11879.69mil|Location2.X=11890.94mil|Location1.Y=3881.407mil|Location2.Y=3892.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11879.69mil|Location2.X=11890.94mil|Location1.Y=3881.407mil|Location2.Y=3892.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (11868mil,3893mil)(12022mil,3893mil) on Bottom Overlay And Pad R6-2(11905mil,3860mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9764.69mil|Location2.X=9775.94mil|Location1.Y=4936.407mil|Location2.Y=4947.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9764.69mil|Location2.X=9775.94mil|Location1.Y=4936.407mil|Location2.Y=4947.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (9673mil,4948mil)(9827mil,4948mil) on Bottom Overlay And Pad R2-2(9790mil,4915mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9764.69mil|Location2.X=9775.94mil|Location1.Y=4882.343mil|Location2.Y=4893.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9764.69mil|Location2.X=9775.94mil|Location1.Y=4882.343mil|Location2.Y=4893.593mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (9673mil,4882mil)(9827mil,4882mil) on Bottom Overlay And Pad R2-2(9790mil,4915mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9684.69mil|Location2.X=9695.94mil|Location1.Y=4936.407mil|Location2.Y=4947.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9684.69mil|Location2.X=9695.94mil|Location1.Y=4936.407mil|Location2.Y=4947.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (9673mil,4948mil)(9827mil,4948mil) on Bottom Overlay And Pad R2-1(9710mil,4915mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9684.69mil|Location2.X=9695.94mil|Location1.Y=4882.343mil|Location2.Y=4893.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9684.69mil|Location2.X=9695.94mil|Location1.Y=4882.343mil|Location2.Y=4893.593mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (9673mil,4882mil)(9827mil,4882mil) on Bottom Overlay And Pad R2-1(9710mil,4915mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9299.69mil|Location2.X=9310.94mil|Location1.Y=6787.343mil|Location2.Y=6798.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9299.69mil|Location2.X=9310.94mil|Location1.Y=6787.343mil|Location2.Y=6798.593mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (9208mil,6787mil)(9362mil,6787mil) on Bottom Overlay And Pad R5-2(9325mil,6820mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9299.69mil|Location2.X=9310.94mil|Location1.Y=6841.407mil|Location2.Y=6852.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9299.69mil|Location2.X=9310.94mil|Location1.Y=6841.407mil|Location2.Y=6852.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (9208mil,6853mil)(9362mil,6853mil) on Bottom Overlay And Pad R5-2(9325mil,6820mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9219.69mil|Location2.X=9230.94mil|Location1.Y=6787.343mil|Location2.Y=6798.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9219.69mil|Location2.X=9230.94mil|Location1.Y=6787.343mil|Location2.Y=6798.593mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (9208mil,6787mil)(9362mil,6787mil) on Bottom Overlay And Pad R5-1(9245mil,6820mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9219.69mil|Location2.X=9230.94mil|Location1.Y=6841.407mil|Location2.Y=6852.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9219.69mil|Location2.X=9230.94mil|Location1.Y=6841.407mil|Location2.Y=6852.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.063mil &lt; 10mil) Between Track (9208mil,6853mil)(9362mil,6853mil) on Bottom Overlay And Pad R5-1(9245mil,6820mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [4.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8266.206mil|Location2.X=8277.456mil|Location1.Y=6269.375mil|Location2.Y=6280.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8266.206mil|Location2.X=8277.456mil|Location1.Y=6269.375mil|Location2.Y=6280.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.787mil &lt; 10mil) Between Track (8265mil,6265mil)(8265mil,6347.756mil) on Bottom Overlay And Pad DIO1-1(8320mil,6320mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [5.787mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8362.544mil|Location2.X=8373.794mil|Location1.Y=6269.375mil|Location2.Y=6280.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8362.544mil|Location2.X=8373.794mil|Location1.Y=6269.375mil|Location2.Y=6280.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.787mil &lt; 10mil) Between Track (8375mil,6265mil)(8375mil,6347.756mil) on Bottom Overlay And Pad DIO1-1(8320mil,6320mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [5.787mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8269.099mil|Location2.X=8280.349mil|Location1.Y=6266.343mil|Location2.Y=6277.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8269.099mil|Location2.X=8280.349mil|Location1.Y=6266.343mil|Location2.Y=6277.593mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (6.063mil &lt; 10mil) Between Track (8265mil,6265mil)(8375mil,6265mil) on Bottom Overlay And Pad DIO1-1(8320mil,6320mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [6.063mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8271.313mil|Location2.X=8278.979mil|Location1.Y=6520.745mil|Location2.Y=6528.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8271.313mil|Location2.X=8278.979mil|Location1.Y=6520.745mil|Location2.Y=6528.412mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (8265mil,6520mil)(8275mil,6530mil) on Bottom Overlay And Pad DIO1-2(8320mil,6480mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8361.442mil|Location2.X=8369.109mil|Location1.Y=6521.167mil|Location2.Y=6528.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8361.442mil|Location2.X=8369.109mil|Location1.Y=6521.167mil|Location2.Y=6528.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (8365mil,6530mil)(8375mil,6520mil) on Bottom Overlay And Pad DIO1-2(8320mil,6480mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8266.206mil|Location2.X=8277.456mil|Location1.Y=6436.619mil|Location2.Y=6447.869mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8266.206mil|Location2.X=8277.456mil|Location1.Y=6436.619mil|Location2.Y=6447.869mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.787mil &lt; 10mil) Between Track (8265mil,6442.244mil)(8265mil,6520mil) on Bottom Overlay And Pad DIO1-2(8320mil,6480mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [5.787mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8362.544mil|Location2.X=8373.794mil|Location1.Y=6436.619mil|Location2.Y=6447.869mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8362.544mil|Location2.X=8373.794mil|Location1.Y=6436.619mil|Location2.Y=6447.869mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.787mil &lt; 10mil) Between Track (8375mil,6442.244mil)(8375mil,6520mil) on Bottom Overlay And Pad DIO1-2(8320mil,6480mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [5.787mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8269.375mil|Location2.X=8280.625mil|Location1.Y=6519.907mil|Location2.Y=6531.157mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8269.375mil|Location2.X=8280.625mil|Location1.Y=6519.907mil|Location2.Y=6531.157mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.063mil &lt; 10mil) Between Track (8275mil,6530mil)(8365mil,6530mil) on Bottom Overlay And Pad DIO1-2(8320mil,6480mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [1.063mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDYFMTO1VUYYLXFK1U0ECLSZSEUP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=10mil) (IsText),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8481.657mil|Location2.X=8489.324mil|Location1.Y=3626.167mil|Location2.Y=3633.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8481.657mil|Location2.X=8489.324mil|Location1.Y=3626.167mil|Location2.Y=3633.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "JDC1" (8455.5mil,3588.5mil) on Top Overlay And Track (8295mil,3630mil)(9155mil,3630mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8459.385mil|Location2.X=8470.635mil|Location1.Y=5339.339mil|Location2.Y=5350.589mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8459.385mil|Location2.X=8470.635mil|Location1.Y=5339.339mil|Location2.Y=5350.589mil|Absolute=True">Silk To Silk Clearance Constraint: (0.071mil &lt; 10mil) Between Text "OUT+" (8495mil,5120mil) on Top Overlay And Track (8295mil,5350mil)(9155mil,5350mil) on Top Overlay Silk Text to Silk Clearance [0.071mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12012.167mil|Location2.X=12019.833mil|Location1.Y=3886.689mil|Location2.Y=3894.355mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12012.167mil|Location2.X=12019.833mil|Location1.Y=3886.689mil|Location2.Y=3894.355mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "R7" (12016mil,3827mil) on Bottom Overlay And Track (11868mil,3893mil)(12022mil,3893mil) on Bottom Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12015.698mil|Location2.X=12023.365mil|Location1.Y=3823.167mil|Location2.Y=3830.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12015.698mil|Location2.X=12023.365mil|Location1.Y=3823.167mil|Location2.Y=3830.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "R7" (12016mil,3827mil) on Bottom Overlay And Track (12022mil,3827mil)(12022mil,3893mil) on Bottom Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12012.167mil|Location2.X=12019.833mil|Location1.Y=3823.167mil|Location2.Y=3830.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12012.167mil|Location2.X=12019.833mil|Location1.Y=3823.167mil|Location2.Y=3830.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "R7" (12016mil,3827mil) on Bottom Overlay And Track (11868mil,3827mil)(12022mil,3827mil) on Bottom Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID4B0EELJ5T5VDEVTKT3NCTISAYI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=9160mil|Location1.Y=0mil|Location2.Y=5355mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=9160mil|Location1.Y=0mil|Location2.Y=5355mil|Absolute=True">Room Definition: Between Component L1-BUCK_LM2596 (8695mil,4480mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=8648.5mil|Location1.Y=0mil|Location2.Y=6533.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=8648.5mil|Location1.Y=0mil|Location2.Y=6533.5mil|Absolute=True">Room Definition: Between Small Component C8-Header2 (8530mil,6455mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=13247.5mil|Location1.Y=0mil|Location2.Y=3833.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=13247.5mil|Location1.Y=0mil|Location2.Y=3833.213mil|Absolute=True">Room Definition: Between Small Component C7-Header2 (13130mil,3654.713mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=12025.937mil|Location1.Y=0mil|Location2.Y=3796.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=12025.937mil|Location1.Y=0mil|Location2.Y=3796.937mil|Absolute=True">Room Definition: Between SMT Small Component R7-3k3 (11945mil,3760mil) on Bottom Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=12383.346mil|Location1.Y=0mil|Location2.Y=3893.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=12383.346mil|Location1.Y=0mil|Location2.Y=3893.31mil|Absolute=True">Room Definition: Between SIP Component C3-Header4 (12268.388mil,3543.307mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=12678.5mil|Location1.Y=0mil|Location2.Y=5303.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=12678.5mil|Location1.Y=0mil|Location2.Y=5303.5mil|Absolute=True">Room Definition: Between Small Component C4-Header3 (12535mil,5200mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=9363.388mil|Location1.Y=0mil|Location2.Y=6644.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=9363.388mil|Location1.Y=0mil|Location2.Y=6644.997mil|Absolute=True">Room Definition: Between SIP Component C5-Header4 (9250mil,6595mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=8378.937mil|Location1.Y=0mil|Location2.Y=6533.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=8378.937mil|Location1.Y=0mil|Location2.Y=6533.937mil|Absolute=True">Room Definition: Between SMT Small Component DIO1-M7 (8320mil,6400mil) on Bottom Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=8238.5mil|Location1.Y=0mil|Location2.Y=4369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=8238.5mil|Location1.Y=0mil|Location2.Y=4369mil|Absolute=True">Room Definition: Between SIP Component F1-F2A (8110mil,3890mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=8869mil|Location1.Y=0mil|Location2.Y=3559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=8869mil|Location1.Y=0mil|Location2.Y=3559mil|Absolute=True">Room Definition: Between Small Component JDC1-Jac DC (8715mil,3380mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=12889.654mil|Location1.Y=0mil|Location2.Y=6878.51mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=12889.654mil|Location1.Y=0mil|Location2.Y=6878.51mil|Absolute=True">Room Definition: Between SIP Component LCD1-LCD 16x2 (10040mil,6795mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=9563.5mil|Location1.Y=0mil|Location2.Y=5303.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=9563.5mil|Location1.Y=0mil|Location2.Y=5303.5mil|Absolute=True">Room Definition: Between Small Component LED2-LED (9490mil,5180mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=11567.046mil|Location1.Y=0mil|Location2.Y=5010.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=11567.046mil|Location1.Y=0mil|Location2.Y=5010.748mil|Absolute=True">Room Definition: Between DIP Component NodeMCU ESP1-NodeMCU ESP8266 (9920mil,4015.748mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=8674.5mil|Location1.Y=0mil|Location2.Y=6002.464mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=8674.5mil|Location1.Y=0mil|Location2.Y=6002.464mil|Absolute=True">Room Definition: Between Small Component Q1-TIP122 (8595mil,5680mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=9365.937mil|Location1.Y=0mil|Location2.Y=6856.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=9365.937mil|Location1.Y=0mil|Location2.Y=6856.937mil|Absolute=True">Room Definition: Between SMT Small Component R5-330 (9285mil,6820mil) on Bottom Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=9830.937mil|Location1.Y=0mil|Location2.Y=4951.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=9830.937mil|Location1.Y=0mil|Location2.Y=4951.937mil|Absolute=True">Room Definition: Between SMT Small Component R2-330 (9750mil,4915mil) on Bottom Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=12025.937mil|Location1.Y=0mil|Location2.Y=3896.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=12025.937mil|Location1.Y=0mil|Location2.Y=3896.937mil|Absolute=True">Room Definition: Between SMT Small Component R6-2k2 (11945mil,3860mil) on Bottom Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=9891.5mil|Location1.Y=0mil|Location2.Y=3784.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=9891.5mil|Location1.Y=0mil|Location2.Y=3784.5mil|Absolute=True">Room Definition: Between Component SW1-SW (9655mil,3495mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=10510mil|Location1.Y=0mil|Location2.Y=3784.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=10510mil|Location1.Y=0mil|Location2.Y=3784.5mil|Absolute=True">Room Definition: Between Component SW2-SW (10273.5mil,3495mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=11128.5mil|Location1.Y=0mil|Location2.Y=3784.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=11128.5mil|Location1.Y=0mil|Location2.Y=3784.5mil|Absolute=True">Room Definition: Between Component SW3-SW (10892mil,3495mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=12903.937mil|Location1.Y=0mil|Location2.Y=3803.774mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=F:\Project\22.IOT-Temp-Humi-App\v10- dat mach in\2.E_Drawing_22.IOT-Temp-Humi-App\Humi_IOT.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=12903.937mil|Location1.Y=0mil|Location2.Y=3803.774mil|Absolute=True">Room Definition: Between Small Component C6-JP2 (12850mil,3740mil) on Top Layer And Room Humi_IOT (Bounding Region = (0mil, 0mil, 2000mil, 1000mil) (InComponentClass('Humi_IOT')) </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

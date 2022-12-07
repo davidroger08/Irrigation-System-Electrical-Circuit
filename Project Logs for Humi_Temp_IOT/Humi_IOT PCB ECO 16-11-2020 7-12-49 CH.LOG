@@ -1,0 +1,18 @@
+Removed Pin From Net: NetName=GND Pin=C4-1
+Removed Pin From Net: NetName=SCL Pin=C4-4
+Removed Pin From Net: NetName=SCL Pin=NodeMCU ESP1-21
+Removed Pin From Net: NetName=BT3 Pin=NodeMCU ESP1-23
+Removed Pin From Net: NetName=BT2 Pin=NodeMCU ESP1-26
+Removed Pin From Net: NetName=3.3V Pin=R3-1
+Removed Pin From Net: NetName=SCL Pin=R3-2
+Removed Pin From Net: NetName=3.3V Pin=R4-1
+Removed Member From Class: ClassName=Humi_IOT Member=R3
+Removed Member From Class: ClassName=Humi_IOT Member=R4
+Change Component Footprint: Designator=C4 Old Footprint=Header4 New Footprint=Header3
+Change Component Comment : Designator=C4 Old Comment=SHT10 New Comment=Header3
+Added Pin To Net: NetName=SCL Pin=C4-1
+Added Pin To Net: NetName=GND Pin=C4-3
+Added Pin To Net: NetName=BT3 Pin=NodeMCU ESP1-22
+Added Pin To Net: NetName=BT2 Pin=NodeMCU ESP1-23
+Added Pin To Net: NetName=SCL Pin=NodeMCU ESP1-26
+Change Net Name : Old Net Name=SCL New Net Name=DHT
